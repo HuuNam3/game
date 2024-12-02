@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Text UIRScore;
     public Text UIRFalse;
     public Text UIRWPM;
+    public Text textPrefab;
     public GameObject UIPanelResult;
     public GameObject UIPanelPause;
     public GameObject UIOver;
@@ -62,7 +63,36 @@ public class GameManager : MonoBehaviour
         this.ContinueGame();
         this.ramdomMap();
         this.setLevel();
+        this.setGun();
         this.VGameStartTime = Time.time;
+    }
+
+    public void setGun()
+    {
+        int idx = PlayerPrefs.GetInt("Gun", 0);
+        Debug.Log(idx);
+
+        if (idx == 0 || gun == null)
+        {
+            Debug.LogWarning("Gun GameObject is not assigned or no gun is selected.");
+            return;
+        }
+
+        SpriteRenderer gunSpriteRenderer = gun.GetComponent<SpriteRenderer>();
+        if (gunSpriteRenderer == null)
+        {
+            Debug.LogError("Gun GameObject does not have a SpriteRenderer component!");
+            return;
+        }
+
+        if (idx > 0 && idx <= listGun.Length)
+        {
+            gunSpriteRenderer.sprite = listGun[idx - 1];
+        }
+        else
+        {
+            Debug.LogError("Gun index is out of range!");
+        }
     }
 
     private void Update()
@@ -86,6 +116,54 @@ public class GameManager : MonoBehaviour
         AudioClip[] audioList = Resources.LoadAll<AudioClip>("audio");
         Sprite[] backGroundList = Resources.LoadAll<Sprite>("bg");
         int randomIndex = UnityEngine.Random.Range(0, audioList.Length);
+        if (randomIndex == 0)
+        {
+            this.UIFalse.color = Color.black;
+            this.UIScore.color = Color.black;
+            this.textPrefab.color = Color.red;
+        }
+        else if (randomIndex == 1) {
+            this.UIFalse.color = Color.white;
+            this.UIScore.color = Color.white;
+            this.textPrefab.color = Color.yellow;
+        }
+        else if (randomIndex == 2)
+        {
+            this.UIFalse.color = Color.white;
+            this.UIScore.color = Color.white;
+            this.textPrefab.color = Color.blue;
+        }
+        else if (randomIndex == 3)
+        {
+            this.UIFalse.color = Color.yellow;
+            this.UIScore.color = Color.yellow;
+            this.textPrefab.color = Color.red;
+        }
+        else if (randomIndex == 4)
+        {
+            this.UIFalse.color = Color.yellow;
+            this.UIScore.color = Color.yellow;
+            this.textPrefab.color = Color.red;
+        }
+        else if (randomIndex == 5)
+        {
+            this.UIFalse.color = Color.white;
+            this.UIScore.color = Color.white;
+            this.textPrefab.color = Color.yellow;
+        }
+        else if (randomIndex == 6)
+        {
+            this.UIFalse.color = Color.yellow;
+            this.UIScore.color = Color.yellow;
+            this.textPrefab.color = Color.red;
+        }
+        else if (randomIndex == 7)
+        {
+            this.UIFalse.color = Color.white;
+            this.UIScore.color = Color.white;
+            this.textPrefab.color = Color.red;
+        }
+
         audioSource.clip = audioList[randomIndex];
         background.sprite = backGroundList[randomIndex];
         PlayerPrefs.SetString("map", audioSource.clip.name);

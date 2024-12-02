@@ -59,6 +59,11 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("Mode", mode);
     }
 
+    public void setGun(int gun)
+    {
+        PlayerPrefs.SetInt("Gun", gun);
+    }
+
     public void QuitGame()
     {
         PlayerPrefs.DeleteAll();

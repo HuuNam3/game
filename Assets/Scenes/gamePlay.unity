@@ -1106,6 +1106,7 @@ MonoBehaviour:
   UIRScore: {fileID: 115819396}
   UIRFalse: {fileID: 174134860}
   UIRWPM: {fileID: 924587679}
+  textPrefab: {fileID: 6447248419201350761, guid: 5971834858b91174ea9ffc8c85bc930a, type: 3}
   UIPanelResult: {fileID: 1721979374}
   UIPanelPause: {fileID: 1683591991}
   UIOver: {fileID: 1899729961}
