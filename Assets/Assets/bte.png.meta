@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d9b33658bb6bc7c46835058c19c3ad24
+guid: 1385245163215854ebb2611d9ab11f79
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -95,7 +95,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: bte_0
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 766
+        width: 414
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 481d5867b9835cf46a4c8fa9b11a1194
+      internalID: -1671972582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bte_1
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 610
+        width: 421
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebd9642a315084d45b346d8a54c557ff
+      internalID: 1949583217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bte_2
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 443
+        width: 421
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f30cf78aaa28314f9a70bfe342e4459
+      internalID: -1495241789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +169,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bte_0: -1671972582
+      bte_1: 1949583217
+      bte_2: -1495241789
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

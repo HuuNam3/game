@@ -13,9 +13,9 @@ public class WordsTime : MonoBehaviour
     private void Start()
     {
         float mode = PlayerPrefs.GetFloat("Mode", 1);
-        Debug.Log(this.wordDelay);
-        Debug.Log(mode / 2);
-        Debug.Log(this.wordDelay - mode / 2);
+        //Debug.Log(this.wordDelay);
+        //Debug.Log(mode / 2);
+        //Debug.Log(this.wordDelay - mode / 2);
         this.wordDelay -= mode/2;
     }
 

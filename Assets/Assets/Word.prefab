@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 7}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 4.0823, y: 11.4905}
+  m_SizeDelta: {x: 168.1647, y: 38.9811}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3154989148993685580
 CanvasRenderer:
@@ -71,8 +71,8 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c390fc7c8ddef1947926dc7fb867a881, type: 3}
-    m_FontSize: 20
-    m_FontStyle: 0
+    m_FontSize: 30
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -181,8 +181,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -1.5, y: -17.4}
-  m_SizeDelta: {x: 7, y: 7}
+  m_AnchoredPosition: {x: -1.0918, y: -17.4}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &4893234177583363114
 SpriteRenderer:
@@ -269,8 +269,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.3999996, y: 6.3999996, z: 0.2}
-  m_Center: {x: 0.0000038146973, y: 0, z: 0}
+  m_Size: {x: 10.13239, y: 8.266195, z: 0.2}
+  m_Center: {x: -0.11663165, y: -0.93309516, z: 0}
 --- !u!222 &5499637438703608758
 CanvasRenderer:
   m_ObjectHideFlags: 0

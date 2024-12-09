@@ -18,6 +18,38 @@ public class WordDisplay : MonoBehaviour
     {
         text.text = text.text.Remove(0, 1);
         text.color = Color.red;
+        if (PlayerPrefs.GetString("map") == "map1")
+        {
+            text.color = Color.blue;
+        }
+        else if (PlayerPrefs.GetString("map") == "map2")
+        {
+            text.color = Color.yellow;
+        }
+        else if (PlayerPrefs.GetString("map") == "map3")
+        {
+            text.color = Color.green;
+        }
+        else if (PlayerPrefs.GetString("map") == "map4")
+        {
+            text.color = Color.red;
+        }
+        else if (PlayerPrefs.GetString("map") == "map5")
+        {
+            text.color = Color.yellow;
+        }
+        else if (PlayerPrefs.GetString("map") == "map6")
+        {
+            text.color = Color.blue;
+        }
+        else if (PlayerPrefs.GetString("map") == "map7")
+        {
+            text.color = Color.red;
+        }
+        else if (PlayerPrefs.GetString("map") == "map8")
+        {
+            text.color = Color.red;
+        }
     }
     public void RemoveWord()
     {

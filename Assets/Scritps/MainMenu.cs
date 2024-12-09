@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+//using Image = UnityEngine.UI.Image;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         // admin mode 
-        this.admin();
+        unlockMode();
+        unlockLevel();
+        //this.admin();
     }
 
     public void PlayGame(int level)
@@ -25,23 +28,30 @@ public class MainMenu : MonoBehaviour
     public void unlockLevel()
     {
         int level = PlayerPrefs.GetInt("LevelUnlock", 1);
+        //Debug.Log(level);
         float mode = PlayerPrefs.GetFloat("Mode");
         int modeUnlock = PlayerPrefs.GetInt("ModeUnlock");
-        if(modeUnlock <= mode)
+        for (int i = levelBtn.Length - 1; i >= level; i--)
         {
-            for (int i = levelBtn.Length - 1; i >= level; i--)
-            {
-                levelBtn[i].enabled = false;
-                levelBtn[i].image.sprite = spriteLock;
-            }
-        } else
-        {
-            for (int i = levelBtn.Length - 1; i > 12; i--)
-            {
-                levelBtn[i].enabled = false;
-                levelBtn[i].image.sprite = spriteLock;
-            }
+            levelBtn[i].enabled = false;
+            levelBtn[i].image.sprite = spriteLock;
         }
+        //if (modeUnlock <= mode)
+        //{
+        //    for (int i = levelBtn.Length - 1; i >= level; i--)
+        //    {
+        //        levelBtn[i].enabled = false;
+        //        levelBtn[i].image.sprite = spriteLock;
+        //    }
+        //}
+        //else
+        //{
+        //    for (int i = levelBtn.Length - 1; i > 12; i--)
+        //    {
+        //        levelBtn[i].enabled = false;
+        //        levelBtn[i].image.sprite = spriteLock;
+        //    }
+        //}
     }
 
     public void unlockMode()
@@ -49,8 +59,13 @@ public class MainMenu : MonoBehaviour
         int mode = PlayerPrefs.GetInt("ModeUnlock", 1);
         for (int i = modeBtn.Length - 1; i >= mode; i--)
         {
+            //opacity
+            Image buttonImage = modeBtn[i].GetComponent<Image>();
+            Color color = buttonImage.color;
+            color.a = Mathf.Clamp01(0.6f);
+            buttonImage.color = color;
+
             modeBtn[i].enabled = false;
-            modeBtn[i].image.sprite = spriteLock;
         }
     }
 
@@ -66,13 +81,13 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        PlayerPrefs.DeleteAll();
-        //Application.Quit();
+        //PlayerPrefs.DeleteAll();
+        Application.Quit();
     }
 
     public void admin()
     {
         PlayerPrefs.SetInt("LevelUnlock", 13);
-        PlayerPrefs.SetInt("ModeUnlock", 6);
+        PlayerPrefs.SetInt("ModeUnlock", 3);
     }
 }

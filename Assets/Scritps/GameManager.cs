@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public Text UIRFalse;
     public Text UIRWPM;
     public Text textPrefab;
+    public Button BtnPause;
     public GameObject UIPanelResult;
     public GameObject UIPanelPause;
     public GameObject UIOver;
@@ -70,7 +71,6 @@ public class GameManager : MonoBehaviour
     public void setGun()
     {
         int idx = PlayerPrefs.GetInt("Gun", 0);
-        Debug.Log(idx);
 
         if (idx == 0 || gun == null)
         {
@@ -123,26 +123,26 @@ public class GameManager : MonoBehaviour
             this.textPrefab.color = Color.red;
         }
         else if (randomIndex == 1) {
+            this.UIFalse.color = Color.red;
+            this.UIScore.color = Color.red;
+            this.textPrefab.color = Color.white;
+        }
+        else if (randomIndex == 2)
+        {
+            this.UIFalse.color = Color.blue;
+            this.UIScore.color = Color.blue;
+            this.textPrefab.color = Color.white;
+        }
+        else if (randomIndex == 3)
+        {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
             this.textPrefab.color = Color.yellow;
         }
-        else if (randomIndex == 2)
+        else if (randomIndex == 4)
         {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
-            this.textPrefab.color = Color.blue;
-        }
-        else if (randomIndex == 3)
-        {
-            this.UIFalse.color = Color.yellow;
-            this.UIScore.color = Color.yellow;
-            this.textPrefab.color = Color.red;
-        }
-        else if (randomIndex == 4)
-        {
-            this.UIFalse.color = Color.yellow;
-            this.UIScore.color = Color.yellow;
             this.textPrefab.color = Color.red;
         }
         else if (randomIndex == 5)
@@ -153,15 +153,15 @@ public class GameManager : MonoBehaviour
         }
         else if (randomIndex == 6)
         {
-            this.UIFalse.color = Color.yellow;
-            this.UIScore.color = Color.yellow;
-            this.textPrefab.color = Color.red;
+            this.UIFalse.color = Color.white;
+            this.UIScore.color = Color.white;
+            this.textPrefab.color = Color.yellow;
         }
         else if (randomIndex == 7)
         {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
-            this.textPrefab.color = Color.red;
+            this.textPrefab.color = Color.green;
         }
 
         audioSource.clip = audioList[randomIndex];
@@ -202,7 +202,11 @@ public class GameManager : MonoBehaviour
     {
         if(this.pause)
         {
+            BtnPause.enabled = false;
             Time.timeScale = 0;
+        } else
+        {
+            BtnPause.enabled = true;
         }
     }
 
@@ -228,6 +232,9 @@ public class GameManager : MonoBehaviour
         int lengthCurrLevel = WordGenerator.getLengthCurrLevel();
         if (this.words.Count == 0 && lengthCurrLevel == 0)
         {
+            //this.level++;
+            //Debug.Log(this.level);
+            //PlayerPrefs.SetInt("Level", this.level);
             this.resultValue(true);
             UIPanelResult.SetActive(true);
             this.pause = true;
@@ -276,21 +283,27 @@ public class GameManager : MonoBehaviour
     public void nextlevel()
     {
         this.level++;
+        Debug.Log(this.level);
         PlayerPrefs.SetInt("Level", this.level);
         SceneManager.LoadScene("gamePlay");
 
-        int levelUnlock = PlayerPrefs.GetInt("LevelUnlock");
-        float mode = PlayerPrefs.GetFloat("Mode");
-        int modeUnlock = PlayerPrefs.GetInt("ModeUnlock");
+        int levelUnlock = PlayerPrefs.GetInt("LevelUnlock",1);
+        levelUnlock++;
+        //Debug.Log(levelUnlock);
+        PlayerPrefs.SetInt("LevelUnlock", levelUnlock);
 
-        if (levelUnlock < 14 && levelUnlock < this.level)
-        {
-            PlayerPrefs.SetInt("LevelUnlock", levelUnlock);
-        } else if(levelUnlock == 14 && mode > modeUnlock)
-        {
-            modeUnlock++;
-            PlayerPrefs.SetInt("ModeUnlock", modeUnlock);
-        }
+        //float mode = PlayerPrefs.GetFloat("Mode");
+        //int modeUnlock = PlayerPrefs.GetInt("ModeUnlock",1);
+        //modeUnlock++;
+
+        //if (levelUnlock < 14 && levelUnlock < this.level)
+        //{
+        //    PlayerPrefs.SetInt("LevelUnlock", levelUnlock);
+        //} else if(levelUnlock == 14 && mode > modeUnlock)
+        //{
+        //    modeUnlock++;
+        //    PlayerPrefs.SetInt("ModeUnlock", modeUnlock);
+        //}
     }
 
     public void RestartLevel()
@@ -347,47 +360,51 @@ public class GameManager : MonoBehaviour
 
     public void Letter(char letter)
     {
-        if (hasActiveWord && activeWord != null)
+        if (this.pause == false)
         {
-            if (activeWord.GetNextLetter() == letter) 
+
+            if (hasActiveWord && activeWord != null)
             {
-                activeWord.typeLetter();
-                isActive = true;
-            } else
-            {
-                this.updateFalse();
-                this.checkLose(false);
-            }
-        }
-        else
-        {
-            bool s = true;
-            foreach (Word word in words)
-            {
-                if (word.GetNextLetter() == letter)
+                if (activeWord.GetNextLetter() == letter) 
                 {
-                    activeWord = word;
-                    hasActiveWord = true;
-                    word.typeLetter();
+                    activeWord.typeLetter();
                     isActive = true;
-                    s = false;
-                    break;
+                } else
+                {
+                    this.updateFalse();
+                    this.checkLose(false);
                 }
             }
-            if (s)
+            else
             {
-                this.updateFalse();
-                this.checkLose(false);
+                bool s = true;
+                foreach (Word word in words)
+                {
+                    if (word.GetNextLetter() == letter)
+                    {
+                        activeWord = word;
+                        hasActiveWord = true;
+                        word.typeLetter();
+                        isActive = true;
+                        s = false;
+                        break;
+                    }
+                }
+                if (s)
+                {
+                    this.updateFalse();
+                    this.checkLose(false);
+                }
             }
-        }
 
-        if (hasActiveWord && activeWord != null && activeWord.Typed())
-        {
-            hasActiveWord = false;
-            words.Remove(activeWord);
-            Destroy(prefeb);
-            this.updateScore();
-            this.checkComplete();
+            if (hasActiveWord && activeWord != null && activeWord.Typed())
+            {
+                hasActiveWord = false;
+                words.Remove(activeWord);
+                Destroy(prefeb);
+                this.updateScore();
+                this.checkComplete();
+            }
         }
     }
 }
