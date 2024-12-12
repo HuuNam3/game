@@ -108,6 +108,13 @@ public class WordGenerator : MonoBehaviour
     }
     public static string GetRandomWord(int level)
     {
+        if(level == 14)
+        {
+            int ramdom = Random.Range(0, currLevel.Count + 1);
+            string randomWord = currLevel[ramdom];
+            currLevel.RemoveAt(ramdom);
+            return randomWord;
+        }
         if(currLevel.Count > 0)
         {
             string randomWord = currLevel[0];

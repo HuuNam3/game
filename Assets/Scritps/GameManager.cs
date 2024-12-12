@@ -230,16 +230,34 @@ public class GameManager : MonoBehaviour
     public void checkComplete()
     {
         int lengthCurrLevel = WordGenerator.getLengthCurrLevel();
-        if (this.words.Count == 0 && lengthCurrLevel == 0)
+        if (this.VScore == 1)
         {
-            //this.level++;
-            //Debug.Log(this.level);
-            //PlayerPrefs.SetInt("Level", this.level);
-            this.resultValue(true);
-            UIPanelResult.SetActive(true);
-            this.pause = true;
-            this.words.Clear();
+            this.handleComplete();
         }
+
+        if (this.level % 14 == 0)
+        {
+            if(this.VScore == 3)
+            {
+                this.handleComplete();
+            }
+        }
+        else if (this.words.Count == 0 && lengthCurrLevel == 0)
+        {
+            this.handleComplete();
+        }
+    }
+
+    private void handleComplete()
+    {
+        int Mode = PlayerPrefs.GetInt("Mode", 1);
+        int unlockLevel = this.level + 1 + (Mode - 1) * 14;
+        Debug.Log(unlockLevel);
+        PlayerPrefs.SetInt("LevelUnlock", unlockLevel);
+        this.resultValue(true);
+        UIPanelResult.SetActive(true);
+        this.pause = true;
+        this.words.Clear();
     }
 
     public void resultValue(bool win)
@@ -282,28 +300,18 @@ public class GameManager : MonoBehaviour
 
     public void nextlevel()
     {
-        this.level++;
-        Debug.Log(this.level);
+        if(this.level % 14 == 0)
+        {
+            this.level = 1;
+            int mode = PlayerPrefs.GetInt("Mode", 1);
+            mode++;
+            PlayerPrefs.SetInt("Mode", mode);
+        }else
+        {
+            this.level++;
+        }
         PlayerPrefs.SetInt("Level", this.level);
         SceneManager.LoadScene("gamePlay");
-
-        int levelUnlock = PlayerPrefs.GetInt("LevelUnlock",1);
-        levelUnlock++;
-        //Debug.Log(levelUnlock);
-        PlayerPrefs.SetInt("LevelUnlock", levelUnlock);
-
-        //float mode = PlayerPrefs.GetFloat("Mode");
-        //int modeUnlock = PlayerPrefs.GetInt("ModeUnlock",1);
-        //modeUnlock++;
-
-        //if (levelUnlock < 14 && levelUnlock < this.level)
-        //{
-        //    PlayerPrefs.SetInt("LevelUnlock", levelUnlock);
-        //} else if(levelUnlock == 14 && mode > modeUnlock)
-        //{
-        //    modeUnlock++;
-        //    PlayerPrefs.SetInt("ModeUnlock", modeUnlock);
-        //}
     }
 
     public void RestartLevel()
