@@ -167,7 +167,9 @@ public class GameManager : MonoBehaviour
         audioSource.clip = audioList[randomIndex];
         background.sprite = backGroundList[randomIndex];
         PlayerPrefs.SetString("map", audioSource.clip.name);
-        audioSource.Play();
+        if(PlayerPrefs.GetInt("Sound", 1) == 1) {
+            audioSource.Play();
+        }
     }
     public void updateScore()
     {
@@ -230,14 +232,9 @@ public class GameManager : MonoBehaviour
     public void checkComplete()
     {
         int lengthCurrLevel = WordGenerator.getLengthCurrLevel();
-        if (this.VScore == 1)
-        {
-            this.handleComplete();
-        }
-
         if (this.level % 14 == 0)
         {
-            if(this.VScore == 3)
+            if (this.VScore == 50)
             {
                 this.handleComplete();
             }
@@ -251,8 +248,16 @@ public class GameManager : MonoBehaviour
     private void handleComplete()
     {
         int Mode = PlayerPrefs.GetInt("Mode", 1);
+        int modeUnlock = PlayerPrefs.GetInt("ModeUnlock", 1);
         int unlockLevel = this.level + 1 + (Mode - 1) * 14;
-        Debug.Log(unlockLevel);
+        if (unlockLevel >= 30 && modeUnlock < 3)
+        {
+            PlayerPrefs.SetInt("ModeUnlock", 3);
+        }
+        else if (unlockLevel >= 15 && modeUnlock < 2)
+        {
+            PlayerPrefs.SetInt("ModeUnlock", 2);
+        }
         PlayerPrefs.SetInt("LevelUnlock", unlockLevel);
         this.resultValue(true);
         UIPanelResult.SetActive(true);
@@ -302,7 +307,6 @@ public class GameManager : MonoBehaviour
     {
         if(this.level % 14 == 0)
         {
-            this.level = 1;
             int mode = PlayerPrefs.GetInt("Mode", 1);
             mode++;
             PlayerPrefs.SetInt("Mode", mode);

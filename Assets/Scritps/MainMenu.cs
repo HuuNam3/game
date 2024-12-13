@@ -10,13 +10,19 @@ public class MainMenu : MonoBehaviour
     public Button[] levelBtn;
     public Button[] modeBtn;
     public Sprite spriteLock;
+    public Sprite[] SpriteLevel;
+    public AudioSource audioSource;
 
     private void Start()
     {
-        // admin mode 
-        unlockMode();
-        unlockLevel();
+        // admin mode
         //this.admin();
+        //this.unlockMode();
+        //this.unlockLevel();
+        if (PlayerPrefs.GetInt("Sound", 1) == 1)
+        {
+            audioSource.Play();
+        }
     }
 
     public void PlayGame(int level)
@@ -27,35 +33,50 @@ public class MainMenu : MonoBehaviour
 
     public void unlockLevel()
     {
-        int level = PlayerPrefs.GetInt("LevelUnlock", 1);
+        int levelUnlock = PlayerPrefs.GetInt("LevelUnlock", 1);
         int mode = PlayerPrefs.GetInt("Mode", 1);
-        int modeUnlock = PlayerPrefs.GetInt("ModeUnlock");
-        for (int i = levelBtn.Length - 1; i >= level - (mode-1)*14; i--)
+        int modeUnlock = PlayerPrefs.GetInt("ModeUnlock", 1);
+        Debug.Log(levelUnlock);
+        Debug.Log(mode);
+        Debug.Log(modeUnlock);
+        for (int i = 1; i <= levelBtn.Length; i++)
         {
-            levelBtn[i].enabled = false;
-            levelBtn[i].image.sprite = spriteLock;
+            if (modeUnlock > mode) {
+                levelBtn[i - 1].enabled = true;
+                levelBtn[i - 1].image.sprite = SpriteLevel[i - 1];
+                continue;
+            }
+            if (levelUnlock - (mode - 1) * 14 >= i) {
+                levelBtn[i - 1].enabled = true;
+                levelBtn[i - 1].image.sprite = SpriteLevel[i - 1];
+                continue;
+            }
+            levelBtn[i-1].enabled = false;
+            levelBtn[i-1].image.sprite = spriteLock;
         }
     }
 
     public void unlockMode()
     {
-        int level = PlayerPrefs.GetInt("LevelUnlock", 1);
-        int unlockMode = level / 14;
-        for (int i = modeBtn.Length - 1; i >= 3 - unlockMode ; i--)
+        int modeUnlock = PlayerPrefs.GetInt("ModeUnlock", 1);
+        int mode = PlayerPrefs.GetInt("Mode", 1);
+        Debug.Log(modeUnlock);
+        Debug.Log(mode);
+        for (int i = 1; i <= modeBtn.Length; i++)
         {
             //opacity
-            Image buttonImage = modeBtn[i].GetComponent<Image>();
+            if(modeUnlock >= i) continue;
+            Image buttonImage = modeBtn[i-1].GetComponent<Image>();
             Color color = buttonImage.color;
             color.a = Mathf.Clamp01(0.6f);
             buttonImage.color = color;
-
-            modeBtn[i].enabled = false;
+            modeBtn[i - 1].enabled = false;
         }
     }
 
-    public void setMode(float mode)
+    public void setMode(int mode)
     {
-        PlayerPrefs.SetFloat("Mode", mode);
+        PlayerPrefs.SetInt("Mode", mode);
     }
 
     public void setGun(int gun)
@@ -65,13 +86,23 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        PlayerPrefs.DeleteAll();
         Application.Quit();
     }
 
     public void admin()
     {
-        //PlayerPrefs.SetInt("LevelUnlock", 15);
-        //PlayerPrefs.SetInt("ModeUnlock", 3);
+        PlayerPrefs.SetInt("LevelUnlock", 44);
+    }
+
+    public void turnOnSound()
+    {
+        audioSource.Play();
+        PlayerPrefs.SetInt("Sound", 1);
+    }
+
+    public void turnOffSound()
+    {
+        audioSource.Pause();
+        PlayerPrefs.SetInt("Sound", 0);
     }
 }
