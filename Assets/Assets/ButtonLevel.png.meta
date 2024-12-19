@@ -349,7 +349,7 @@ TextureImporter:
         width: 533
         height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -370,7 +370,7 @@ TextureImporter:
         width: 166
         height: 151
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,6 +378,48 @@ TextureImporter:
       bones: []
       spriteID: b10f3ff532099b945af5470d8226ecb5
       internalID: 275305725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLevel_2
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 78
+        width: 173
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75407c80fd1c8a428b9dbd3509c9ae0
+      internalID: -2073862039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLevel_3
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 82
+        width: 168
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7e8ff4c80eb7b4f9e16988e4b99975
+      internalID: -720139758
       vertices: []
       indices: 
       edges: []
@@ -395,6 +437,8 @@ TextureImporter:
     nameFileIdTable:
       ButtonLevel_0: 1214815680
       ButtonLevel_1: 275305725
+      ButtonLevel_2: -2073862039
+      ButtonLevel_3: -720139758
       "\u2014Pngtree\u2014game user interface level stroke_6033864_0": -39970538
       "\u2014Pngtree\u2014game user interface level stroke_6033864_1": -547248120
       "\u2014Pngtree\u2014game user interface level stroke_6033864_10": -470146843

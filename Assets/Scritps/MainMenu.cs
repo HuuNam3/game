@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,11 @@ public class MainMenu : MonoBehaviour
     public Sprite spriteLock;
     public Sprite[] SpriteLevel;
     public AudioSource audioSource;
+    public Image sound;
+    public Image effect;
+    public Sprite[] listSprite;
+    public bool soundValue;
+    public bool effectValue;
 
     private void Start()
     {
@@ -21,7 +27,25 @@ public class MainMenu : MonoBehaviour
         //this.unlockLevel();
         if (PlayerPrefs.GetInt("Sound", 1) == 1)
         {
-            audioSource.Play();
+            sound.sprite = listSprite[0];
+            audioSource.mute = false;
+            soundValue = false;
+        } else
+        {
+            sound.sprite = listSprite[1];
+            audioSource.mute = true;
+            soundValue = true;
+        }
+
+        if (PlayerPrefs.GetInt("Effect", 1) == 1)
+        {
+            effect.sprite = listSprite[2];
+            effectValue = false;
+        }
+        else
+        {
+            effect.sprite = listSprite[3];
+            effectValue = true;
         }
     }
 
@@ -94,15 +118,33 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("LevelUnlock", 44);
     }
 
-    public void turnOnSound()
+    public void ToggleMute()
     {
-        audioSource.Play();
-        PlayerPrefs.SetInt("Sound", 1);
+        soundValue = !soundValue;
+        if (!soundValue)
+        {
+            PlayerPrefs.SetInt("Sound", 1);
+            sound.sprite = listSprite[0];
+        } else
+        {
+            PlayerPrefs.SetInt("Sound", 0);
+            sound.sprite = listSprite[1];
+        }
+        audioSource.mute = soundValue;
     }
 
-    public void turnOffSound()
+    public void ToggleEffectMute()
     {
-        audioSource.Pause();
-        PlayerPrefs.SetInt("Sound", 0);
+        effectValue = !effectValue;
+        if (!effectValue)
+        {
+            PlayerPrefs.SetInt("Effect", 1);
+            effect.sprite = listSprite[2];
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Effect", 0);
+            effect.sprite = listSprite[3];
+        }
     }
 }

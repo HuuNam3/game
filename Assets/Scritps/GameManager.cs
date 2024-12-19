@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     [Header("Sound")]
     public AudioSource audioSource;
 
+    [Header("Effect")]
+    public AudioSource audioClip;
+
     [Header("backGround")]
     public SpriteRenderer background;
 
@@ -103,6 +106,15 @@ public class GameManager : MonoBehaviour
             if (isActive)
             {
                 prefeb = Instantiate(bullet, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.Euler(0, 0, 90));
+                AudioSource audio = prefeb.GetComponent<AudioSource>();
+                if (PlayerPrefs.GetInt("Effect", 1) == 1)
+                {
+                    audio.mute = false;
+                }
+                else
+                {
+                    audio.mute = true;
+                }
                 Destroy(prefeb, 1f);
                 isActive = false;
                 this.checkKeyTrue();
@@ -167,8 +179,13 @@ public class GameManager : MonoBehaviour
         audioSource.clip = audioList[randomIndex];
         background.sprite = backGroundList[randomIndex];
         PlayerPrefs.SetString("map", audioSource.clip.name);
-        if(PlayerPrefs.GetInt("Sound", 1) == 1) {
-            audioSource.Play();
+        audioSource.Play();
+        Debug.Log(PlayerPrefs.GetInt("Sound", 1));
+        if (PlayerPrefs.GetInt("Sound", 1) == 1) {
+            audioSource.mute = false;
+        } else
+        {
+            audioSource.mute = true;
         }
     }
     public void updateScore()
