@@ -1,0 +1,469 @@
+fileFormatVersion: 2
+guid: 1559b3b4ffb05ef4789474255593c8c2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_2"
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 850
+        width: 166
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eebdc1ab04e171d4483596ae17901d12
+      internalID: 499815267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_3"
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 850
+        width: 161
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a2abbe6317da348b53c8dacda68fa2
+      internalID: -1860071576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_4"
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 850
+        width: 166
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 983d9e17df88f9d4faa14b7d313ac06b
+      internalID: -1091447288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_5"
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 850
+        width: 166
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6162f6bc58dfc5d47a1df45699c20056
+      internalID: 1216816129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_6"
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 850
+        width: 167
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 155aa2eee5a9acc43992211e3e27d5b4
+      internalID: 1591540615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_7"
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 627
+        width: 166
+        height: 154
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb5699df692a5c24187762d079ecf33d
+      internalID: 1271901994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_8"
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 625
+        width: 173
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7c39e6187c7ef8448067d3f759fc97a
+      internalID: -71358217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_9"
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 629
+        width: 166
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db36db43b808f3f438b95cc4abef266c
+      internalID: -1472113425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_10"
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 625
+        width: 170
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6340b50510a075742a8ff4af83558d33
+      internalID: -470146843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_11"
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 629
+        width: 167
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e67dd25541c1944cbe07733fde6841e
+      internalID: -1262711064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014game user interface level stroke_6033864_13"
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 409
+        width: 166
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b669451c6b73587469b40d59dce1271a
+      internalID: -297510342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLevel_0
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 1072
+        width: 533
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4896a5be977fe4346ad4de48345ccb4b
+      internalID: 1214815680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLevel_1
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 409
+        width: 166
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b10f3ff532099b945af5470d8226ecb5
+      internalID: 275305725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLevel_2
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 78
+        width: 173
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75407c80fd1c8a428b9dbd3509c9ae0
+      internalID: -2073862039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLevel_3
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 82
+        width: 168
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd7e8ff4c80eb7b4f9e16988e4b99975
+      internalID: -720139758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ButtonLevel_0: 1214815680
+      ButtonLevel_1: 275305725
+      ButtonLevel_2: -2073862039
+      ButtonLevel_3: -720139758
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_0": -39970538
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_1": -547248120
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_10": -470146843
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_11": -1262711064
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_12": -1207010064
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_13": -297510342
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_14": 1013983034
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_15": 223344291
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_16": -1032903952
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_17": -690290079
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_18": 990431898
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_19": 641650054
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_2": 499815267
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_20": -274659689
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_21": -283096743
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_22": -283744073
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_3": -1860071576
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_4": -1091447288
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_5": 1216816129
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_6": 1591540615
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_7": 1271901994
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_8": -71358217
+      "\u2014Pngtree\u2014game user interface level stroke_6033864_9": -1472113425
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

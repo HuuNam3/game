@@ -105,7 +105,7 @@ public class WordGenerator : MonoBehaviour
     {
         if(level == 14)
         {
-            int ramdom = Random.Range(0, currLevel.Count + 1);
+            int ramdom = Random.Range(0, currLevel.Count);
             string randomWord = currLevel[ramdom];
             currLevel.RemoveAt(ramdom);
             return randomWord;

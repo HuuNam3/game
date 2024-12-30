@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,34 +19,29 @@ public class MainMenu : MonoBehaviour
     public Sprite[] listSprite;
     public bool soundValue;
     public bool effectValue;
+    public TextMeshProUGUI textMeshProUGUI;
 
     private void Start()
     {
         // admin mode
-        //this.admin();
+        this.admin();
         //this.unlockMode();
         //this.unlockLevel();
-        if (PlayerPrefs.GetInt("Sound", 1) == 1)
+        //PlayerPrefs.DeleteAll();
+        if (audioSource == null)
         {
-            sound.sprite = listSprite[0];
-            audioSource.mute = false;
-            soundValue = false;
-        } else
-        {
-            sound.sprite = listSprite[1];
-            audioSource.mute = true;
-            soundValue = true;
-        }
-
-        if (PlayerPrefs.GetInt("Effect", 1) == 1)
-        {
-            effect.sprite = listSprite[2];
-            effectValue = false;
-        }
-        else
-        {
-            effect.sprite = listSprite[3];
-            effectValue = true;
+            GameObject music = GameObject.FindGameObjectWithTag("Music");
+            AudioSource audio = music.GetComponent<AudioSource>();
+            if (PlayerPrefs.GetInt("Sound", 1) == 1)
+            {
+                audio.mute = false;
+                soundValue = false;
+            }
+            else
+            {
+                audio.mute = true;
+                soundValue = true;
+            }
         }
     }
 
@@ -55,11 +51,50 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("Level", level);
     }
 
+    public void showPanelSound()
+    {
+        if (PlayerPrefs.GetInt("Sound", 1) == 1)
+        {
+            effect.sprite = listSprite[2];
+            audioSource.mute = false;
+            soundValue = false;
+        }
+        else
+        {
+            effect.sprite = listSprite[3];
+            audioSource.mute = true;
+            soundValue = true;
+        }
+
+        if (PlayerPrefs.GetInt("Effect", 1) == 1)
+        {
+            sound.sprite = listSprite[0];
+            effectValue = false;
+        }
+        else
+        {
+            sound.sprite = listSprite[1];
+            effectValue = true;
+        }
+    }
+
     public void unlockLevel()
     {
         int levelUnlock = PlayerPrefs.GetInt("LevelUnlock", 1);
         int mode = PlayerPrefs.GetInt("Mode", 1);
         int modeUnlock = PlayerPrefs.GetInt("ModeUnlock", 1);
+        if (mode == 1)
+        {
+            textMeshProUGUI.text = "Easy";
+        }
+        else if (mode == 2)
+        {
+            textMeshProUGUI.text = "Nomal";
+        }
+        else if (mode == 3)
+        {
+            textMeshProUGUI.text = "Hard";
+        }
         Debug.Log(levelUnlock);
         Debug.Log(mode);
         Debug.Log(modeUnlock);
@@ -124,11 +159,17 @@ public class MainMenu : MonoBehaviour
         if (!soundValue)
         {
             PlayerPrefs.SetInt("Sound", 1);
-            sound.sprite = listSprite[0];
+            if (listSprite[0] != null)
+            {
+                effect.sprite = listSprite[2];
+            }
         } else
         {
-            PlayerPrefs.SetInt("Sound", 0);
-            sound.sprite = listSprite[1];
+            if(sound != null)
+            {
+                PlayerPrefs.SetInt("Sound", 0);
+                effect.sprite = listSprite[3];
+            }
         }
         audioSource.mute = soundValue;
     }
@@ -139,12 +180,13 @@ public class MainMenu : MonoBehaviour
         if (!effectValue)
         {
             PlayerPrefs.SetInt("Effect", 1);
-            effect.sprite = listSprite[2];
+            sound.sprite = listSprite[0];
+            
         }
         else
         {
             PlayerPrefs.SetInt("Effect", 0);
-            effect.sprite = listSprite[3];
+            sound.sprite = listSprite[1];
         }
     }
 }

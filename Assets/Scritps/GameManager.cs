@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,8 +18,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Bullet effected")]
     private GameObject prefeb;
+    public List<GameObject> listprefeb;
     public Transform player;
-    public GameObject bullet;
+    public GameObject[] bullet;
+    public int target;
 
     [Header("UI")]
     public Text UIFalse;
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
     public Text UIRScore;
     public Text UIRFalse;
     public Text UIRWPM;
+    public Text UILevel;
     public Text textPrefab;
     public Button BtnPause;
     public GameObject UIPanelResult;
@@ -61,6 +65,10 @@ public class GameManager : MonoBehaviour
 
     [Header("backGround")]
     public SpriteRenderer background;
+    public MainMenu menu;
+    public Sprite[] listSprite;
+    public Image sound;
+    public Image effect;
 
     void Start()
     {
@@ -69,6 +77,8 @@ public class GameManager : MonoBehaviour
         this.setLevel();
         this.setGun();
         this.VGameStartTime = Time.time;
+        menu = new MainMenu();
+        listprefeb = new List<GameObject>();
     }
 
     public void setGun()
@@ -105,20 +115,28 @@ public class GameManager : MonoBehaviour
         {
             if (isActive)
             {
-                prefeb = Instantiate(bullet, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.Euler(0, 0, 90));
-                AudioSource audio = prefeb.GetComponent<AudioSource>();
-                if (PlayerPrefs.GetInt("Effect", 1) == 1)
+                if (listprefeb.Count < words[0].getDisplay().getText())
                 {
-                    audio.mute = false;
+                    prefeb = Instantiate(bullet[PlayerPrefs.GetInt("Gun", 1) - 1], new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.Euler(0, 0, 90));
+                    if (prefeb != null)
+                    {
+                        AudioSource audio = prefeb.GetComponent<AudioSource>();
+                        if (PlayerPrefs.GetInt("Effect", 1) == 1)
+                        {
+                            audio.mute = false;
+                        }
+                        else
+                        {
+                            audio.mute = true;
+                        }
+                        listprefeb.Add(prefeb);
+                    }
+                    //Destroy(prefeb, 1f);
+
+                    this.zPlayer();
                 }
-                else
-                {
-                    audio.mute = true;
-                }
-                Destroy(prefeb, 1f);
-                isActive = false;
                 this.checkKeyTrue();
-                this.zPlayer();
+                isActive = false;
             }
         }
     }
@@ -132,47 +150,55 @@ public class GameManager : MonoBehaviour
         {
             this.UIFalse.color = Color.black;
             this.UIScore.color = Color.black;
+            this.UILevel.color = Color.black;
             this.textPrefab.color = Color.red;
         }
         else if (randomIndex == 1) {
-            this.UIFalse.color = Color.red;
-            this.UIScore.color = Color.red;
+            this.UIFalse.color = Color.yellow;
+            this.UIScore.color = Color.yellow;
+            this.UILevel.color = Color.yellow;
             this.textPrefab.color = Color.white;
         }
         else if (randomIndex == 2)
         {
-            this.UIFalse.color = Color.blue;
-            this.UIScore.color = Color.blue;
-            this.textPrefab.color = Color.white;
+            this.UIFalse.color = Color.white;
+            this.UIScore.color = Color.white;
+            this.UILevel.color = Color.white;
+            this.textPrefab.color = Color.blue;
         }
         else if (randomIndex == 3)
         {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
+            this.UILevel.color = Color.white;
             this.textPrefab.color = Color.yellow;
         }
         else if (randomIndex == 4)
         {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
+            this.UILevel.color = Color.white;
             this.textPrefab.color = Color.red;
         }
         else if (randomIndex == 5)
         {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
+            this.UILevel.color = Color.white;
             this.textPrefab.color = Color.yellow;
         }
         else if (randomIndex == 6)
         {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
+            this.UILevel.color = Color.white;
             this.textPrefab.color = Color.yellow;
         }
         else if (randomIndex == 7)
         {
             this.UIFalse.color = Color.white;
             this.UIScore.color = Color.white;
+            this.UILevel.color = Color.white;
             this.textPrefab.color = Color.green;
         }
 
@@ -180,12 +206,20 @@ public class GameManager : MonoBehaviour
         background.sprite = backGroundList[randomIndex];
         PlayerPrefs.SetString("map", audioSource.clip.name);
         audioSource.Play();
-        Debug.Log(PlayerPrefs.GetInt("Sound", 1));
         if (PlayerPrefs.GetInt("Sound", 1) == 1) {
             audioSource.mute = false;
         } else
         {
             audioSource.mute = true;
+        }
+    }
+    public void deleteBullet(GameObject prefab)
+    {
+        if (listprefeb.Contains(prefab)) // Kiểm tra xem prefab có trong danh sách không
+        {
+            listprefeb.Remove(prefab); // Xóa prefab khỏi danh sách
+            Destroy(prefab); // Hủy đối tượng khỏi cảnh
+            //Debug.Log("Bullet deleted and removed from list: " + prefab.name);
         }
     }
     public void updateScore()
@@ -232,6 +266,7 @@ public class GameManager : MonoBehaviour
     public void setLevel()
     {
         this.level = PlayerPrefs.GetInt("Level", 1);
+        UILevel.text = "Level: " + this.level;
         WordGenerator.setValueCurrLevel(this.level);
     }
 
@@ -346,12 +381,20 @@ public class GameManager : MonoBehaviour
         float timeElapsed = (Time.time - this.VGameStartTime) / 60f;
         if (timeElapsed > 0)
         {
-            float wpms = this.VWords / timeElapsed;
-            wpms = Mathf.Round(wpms * 10f) / 10f; 
+            // Tính CPM.
+            float wpms = this.VWords /5*timeElapsed;
+
+            // Làm tròn cpms thành số nguyên.
+            wpms = Mathf.Round(wpms);
+
+            // Trả về kết quả.
             return wpms;
         }
+
+        // Trả về 0 nếu thời gian không hợp lệ.
         return 0f;
     }
+
 
     public void AddWord()
     {
@@ -365,6 +408,34 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public List<Word> GetWords()
+    {
+        return words;
+    }
+
+    public GameObject targetEnemy()
+    {
+        if(words.Count == 0) return null;
+        return words[this.target].getDisplay().gameObject;
+    }
+
+    public bool checkEnemy(string name)
+    {
+        if (words[this.target] == null)
+        {
+            return false;
+        } else
+        {
+            return words[this.target].getDisplay().text.text == name;
+        }
+    }
+
+    public Word targetWord()
+    {
+        return words[this.target];
+    }
+
     public void zPlayer()
     {
         if(words.Count == 0)
@@ -391,17 +462,26 @@ public class GameManager : MonoBehaviour
     {
         if (this.pause == false)
         {
-
             if (hasActiveWord && activeWord != null)
             {
-                if (activeWord.GetNextLetter() == letter) 
+                Debug.Log(activeWord.getDisplay().text.text.Length);
+                //Debug.Log(this.listprefeb.Count);
+                int idx = this.listprefeb.Count;
+                if (this.listprefeb.Count >= activeWord.getDisplay().text.text.Length) return;
+                Debug.Log(activeWord.getDisplay().text.text[idx]);
+                Debug.Log(letter);
+                if (activeWord.getDisplay().text.text.Length != 0)
                 {
-                    activeWord.typeLetter();
-                    isActive = true;
-                } else
-                {
-                    this.updateFalse();
-                    this.checkLose(false);
+                    if (activeWord.getDisplay().text.text[idx] == letter)
+                    {
+                        //activeWord.typeLetter();
+                        //this.deleteKey();
+                        isActive = true;
+                    } else
+                    {
+                        this.updateFalse();
+                        this.checkLose(false);
+                    }
                 }
             }
             else
@@ -411,9 +491,12 @@ public class GameManager : MonoBehaviour
                 {
                     if (word.GetNextLetter() == letter)
                     {
+                        this.target = words.IndexOf(word);
                         activeWord = word;
+                        activeWord.getDisplay().setColor();
                         hasActiveWord = true;
-                        word.typeLetter();
+                        //this.deleteKey();
+                        //word.typeLetter();
                         isActive = true;
                         s = false;
                         break;
@@ -429,11 +512,61 @@ public class GameManager : MonoBehaviour
             if (hasActiveWord && activeWord != null && activeWord.Typed())
             {
                 hasActiveWord = false;
-                words.Remove(activeWord);
-                Destroy(prefeb);
+                //words.Remove(activeWord);
                 this.updateScore();
                 this.checkComplete();
             }
+        }
+    }
+
+    public void showUiSound()
+    {
+        if (PlayerPrefs.GetInt("Sound", 1) == 1)
+        {
+            sound.sprite = listSprite[0];
+        }
+        else
+        {
+            sound.sprite = listSprite[1];
+        }
+
+        if (PlayerPrefs.GetInt("Effect", 1) == 1)
+        {
+            effect.sprite = listSprite[2];
+        }
+        else
+        {
+            effect.sprite = listSprite[3];
+        }
+    }
+
+    public void ToggleMute()
+    {
+        if (PlayerPrefs.GetInt("Sound", 1) == 1)
+        {
+            PlayerPrefs.SetInt("Sound", 0);
+            audioSource.mute = true;
+            sound.sprite = listSprite[1];
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Sound", 1);
+            audioSource.mute = false;
+            sound.sprite = listSprite[0];
+        }
+    }
+
+    public void ToggleEffectMute()
+    {
+        if (PlayerPrefs.GetInt("Effect", 1) == 1)
+        {
+            PlayerPrefs.SetInt("Effect", 0);
+            effect.sprite = listSprite[3];
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Effect", 1);
+            effect.sprite = listSprite[2];
         }
     }
 }
