@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     [Header("backGround")]
     public SpriteRenderer background;
-    public MainMenu menu;
+    //public MainMenu menu;
     public Sprite[] listSprite;
     public Image sound;
     public Image effect;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         this.setLevel();
         this.setGun();
         this.VGameStartTime = Time.time;
-        menu = new MainMenu();
+        //menu = new MainMenu();
         listprefeb = new List<GameObject>();
     }
 
@@ -146,6 +146,9 @@ public class GameManager : MonoBehaviour
         AudioClip[] audioList = Resources.LoadAll<AudioClip>("audio");
         Sprite[] backGroundList = Resources.LoadAll<Sprite>("bg");
         int randomIndex = UnityEngine.Random.Range(0, audioList.Length);
+
+        Debug.Log(audioList.Length);
+        Debug.Log(randomIndex);
         if (randomIndex == 0)
         {
             this.UIFalse.color = Color.black;
@@ -464,7 +467,7 @@ public class GameManager : MonoBehaviour
         {
             if (hasActiveWord && activeWord != null)
             {
-                Debug.Log(activeWord.getDisplay().text.text.Length);
+                //Debug.Log(activeWord.getDisplay().text.text.Length);
                 //Debug.Log(this.listprefeb.Count);
                 int idx = this.listprefeb.Count;
                 if (this.listprefeb.Count >= activeWord.getDisplay().text.text.Length) return;

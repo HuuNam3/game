@@ -45,6 +45,7 @@ public class collideHandle : MonoBehaviour
                         display.RemoveWord();
                         manage.GetWords().Remove(manage.targetWord());
                         manage.hasActiveWord = false;
+                        manage.checkComplete();
                     }
                 }
                 else

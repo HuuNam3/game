@@ -20,10 +20,17 @@ public class MainMenu : MonoBehaviour
     public bool soundValue;
     public bool effectValue;
     public TextMeshProUGUI textMeshProUGUI;
+    public Animator animator;
 
     private void Start()
     {
         // admin mode
+        //animator = GetComponent<Animator>();
+        //if (animator != null)
+        //{
+        //    animator.enabled = true;
+        //    animator.Play("Home_UI_Shows");
+        //}
         this.admin();
         //this.unlockMode();
         //this.unlockLevel();
@@ -43,6 +50,11 @@ public class MainMenu : MonoBehaviour
                 soundValue = true;
             }
         }
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void PlayGame(int level)
@@ -151,6 +163,7 @@ public class MainMenu : MonoBehaviour
     public void admin()
     {
         PlayerPrefs.SetInt("LevelUnlock", 44);
+        PlayerPrefs.SetInt("ModeUnlock", 3);
     }
 
     public void ToggleMute()
